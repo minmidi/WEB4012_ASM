@@ -31,6 +31,9 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    protected $maxAttempts = 3; // Default is 5
+    protected $decayMinutes = 1; // Default is 1
+
     /**
      * Create a new controller instance.
      *
@@ -46,4 +49,6 @@ class LoginController extends Controller
         Auth::logout();
         return redirect()->route('index');
     }
+
+    
 }
