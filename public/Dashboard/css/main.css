@@ -31,7 +31,7 @@
 
 body, html {
 	height: 100%;
-	font-family: nunito-xtrabold, sans-serif;
+  font-family: nunito-xtrabold, sans-serif;
 }
 
 /*---------------------------------------------*/
@@ -173,13 +173,13 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: #ebeeef;
+  background: url("../images/bg1.jpg");
 }
 
 
 .wrap-login100 {
   width: 670px;
-  background: #fff;
+  background: #eeeeee;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
