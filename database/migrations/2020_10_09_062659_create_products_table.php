@@ -23,7 +23,6 @@ class CreateProductsTable extends Migration
             $table->float('sale_percent');
             $table->boolean('stocks');
             $table->boolean('is_active')->default(1);
-            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

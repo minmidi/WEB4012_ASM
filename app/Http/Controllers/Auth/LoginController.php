@@ -31,6 +31,9 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    protected $maxAttempts = 3;     // maximum number of login attempts 3
+    protected $decayMinutes = 1;    // re-login time after logging in too many times
+
     /**
      * Create a new controller instance.
      *
@@ -46,4 +49,6 @@ class LoginController extends Controller
         Auth::logout();
         return redirect()->route('index');
     }
+
+    
 }
