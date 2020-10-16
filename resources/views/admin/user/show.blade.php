@@ -4,6 +4,7 @@
 @section('active_5','active')
 @section('url','Chi tiết tài khoản: '. $user->name)
 @section('main')
+
     
         <!--begin::Card-->
         <div class="card card-custom card-stretch">
@@ -34,6 +35,13 @@
                         <label class="col-xl-3 col-lg-3 col-form-label">Họ tên</label>
                         <div class="col-lg-9 col-xl-6">
                             <p>{{ $user->first_name." ".$user->last_name}}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-xl-3 col-lg-3 col-form-label">Tên tài khoản</label>
+                        <div class="col-lg-9 col-xl-6">
+                            <p>{{ $user->name }}</p>
                         </div>
                     </div>
 
