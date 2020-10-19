@@ -25,13 +25,15 @@
         </div>
     @endif
 
+    
+
 
     <table class="table">
         <thead>
             <tr class="table-info">
                 <th scope="col" class="text-center">ID</th>
-                <th scope="col" class="text-center">Tên đăng nhập</th>
                 <th scope="col" class="text-center">Hình ảnh</th>
+                <th scope="col" class="text-center">Tên đăng nhập</th>
                 <th scope="col" class="text-center">Email</th>
                 <th scope="col" class="text-center">Trạng thái</th>
                 <th scope="col" class="text-center">Chi tiết</th>
@@ -44,10 +46,8 @@
         <tr>
             <input type="hidden" class="delete_val_id" value="{{ $user->id }}">
             <td>{{ $user->id }}</td>
+            <td><img src="{{ substr($user->images, 0, 4) == 'http' ? $user->image_url : asset($user->images) }}" height="50" /> </td>
             <td>{{ $user->name }}</td>
-            <td>
-                <img src="{{ asset('Dashboard/'.$user->images) }}" alt="Hình ảnh" width="150" height="100">
-            </td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->is_active == 1 ? 'Kích hoạt' : 'Không kích hoạt' }}</td>
             <td class="text-center">

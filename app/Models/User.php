@@ -21,6 +21,12 @@ class User extends Authenticatable
         'email',
         'is_active',
         'password',
+        'first_name',
+        'last_name',
+        'images',
+        'gender',
+        'birthday',
+        'address',
     ];
 
     /**
@@ -41,4 +47,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // SEARCH FUNCTIONS
+    public function scopeSearch($query, ...$colums)
+    {
+        $keyWord = request()->search;
+        foreach ($colums as $colum) {
+            $query->orWhere($colum, 'like', "%$keyWord%");
+        }
+    }
 }
