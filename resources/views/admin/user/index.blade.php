@@ -15,18 +15,6 @@
             <a href="{{ route('user.create') }}" class="btn btn-success"> thêm mới</a>
         </form>
     </div>
-    <!-- Thông báo xoá thành công -->
-    @if(session()->has('message'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{session()->get('message')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
-
-    
-
 
     <table class="table">
         <thead>
@@ -46,7 +34,7 @@
         <tr>
             <input type="hidden" class="delete_val_id" value="{{ $user->id }}">
             <td>{{ $user->id }}</td>
-            <td><img src="{{ substr($user->images, 0, 4) == 'http' ? $user->image_url : asset($user->images) }}" height="50" /> </td>
+            <td><img src="{{ asset('images/posts/' . $user->images) }}" height="150" width="150" style="border-radius: 50%" /> </td>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->is_active == 1 ? 'Kích hoạt' : 'Không kích hoạt' }}</td>

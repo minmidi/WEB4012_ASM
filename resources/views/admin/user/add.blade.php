@@ -38,13 +38,19 @@
             <input type="text" class="form-control" name="address" id='address' placeholder="Nhập địa chỉ">
         </div>
 
-         <!-- Địa chỉ -->
+         <!-- Tên đăng nhập -->
+         <div class="form-group m-3">
+            <label for="name" class="mt-3">Tên đăng nhập</label>
+            <input type="text" class="form-control" name="name" id='name' placeholder="Nhập tên đăng nhập">
+        </div>
+
+         <!-- Email -->
          <div class="form-group m-3">
             <label for="email" class="mt-3">Email</label>
             <input type="text" class="form-control" name="email" id='email' placeholder="Nhập email">
         </div>
 
-        <!-- Địa chỉ -->
+        <!-- Mật khẩu -->
         <div class="form-group m-3">
             <label for="password" class="mt-3">Mật khẩu</label>
             <input type="password" class="form-control" name="password" id='password' placeholder="Nhập mật khẩu">

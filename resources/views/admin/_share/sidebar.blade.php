@@ -2,7 +2,7 @@
     <div class="sidebar-header">
         <div class="pull-left image">
             {{-- <img src="{{ asset('images/'.Auth::user()->images) }}" class="img-circle" alt="User Image"> --}}
-            <img src="Dashboard/images/user.jpg" class="img-circle" alt="User Image">
+            <img src="{{ asset('images/posts/'.Auth::user()->images) }}" class="img-circle" alt="User Image">
         </div>
 
         <div class="pull-left info">
