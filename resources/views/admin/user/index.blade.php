@@ -67,23 +67,4 @@
 
 @stop
 
-@section('script')
-    <script>
-        $('.delete_admin').click(function(event) {
-      var form =  $(this).closest("form");
-      event.preventDefault();
-      swal({
-          title: `Bạn có chắc chắn muốn xoá không?`,
-          text: "Nếu bạn xoá, dữ liệu sẽ mất vĩnh viễn",
-          icon: "warning",
-          buttons: ["Quay lại", "Có, tôi đồng ý"],
-          dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          form.submit();
-        }
-      });
-    });
-    </script>
-@endsection
+
