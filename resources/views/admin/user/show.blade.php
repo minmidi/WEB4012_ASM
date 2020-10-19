@@ -15,7 +15,7 @@
                     <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label">Hình ảnh</label>
                         <div class="col-lg-9 col-xl-6">
-                            <td><img src="{{ substr($user->images, 0, 4) == 'http' ? $user->image_url : asset($user->images) }}" height="50" /> </td>
+                            <td><img src="{{ asset('images/posts/' . $user->images) }}" height="100" width="150"/> </td>
                         </div>
                     </div>
                     <div class="form-group row">
