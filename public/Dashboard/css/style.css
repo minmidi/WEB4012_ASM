@@ -242,10 +242,20 @@ a.article:hover {
 
 .delete_admin {
     color: #dc3545;
+    border: none;
+    background: none;
 }
 
 .delete_admin:hover {
     color: #491217;
+}
+
+.show_admin {
+    color: #a6b7ff;
+}
+
+.show_admin:hover {
+    color: #859cff;
 }
 
 

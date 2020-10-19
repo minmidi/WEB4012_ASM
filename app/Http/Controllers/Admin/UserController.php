@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserInfo;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -15,7 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::orderby('created_at','desc')
+                                ->search('name','email')
+                                ->paginate(10);
+         return view('admin.user.index',compact('users'));
     }
 
     /**
@@ -25,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.add');
     }
 
     /**
@@ -36,7 +40,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -47,7 +51,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('admin.user.show',[
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -80,7 +86,12 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
-    {
-        //
+    {   
+        if($user->delete()==true) {
+            return redirect()->route('user.index')->with('message', 'Đã xoá thành công, nhấn X để tắt thanh thông báo');
+        }
+        else {
+            return redirect()->back()->with('message', 'Xoá không thành công, vui lòng thử lại');
+        }
     }
 }

@@ -6,25 +6,24 @@
         </div>
 
         <div class="pull-left info">
-            {{-- <p>{{ Auth::user()->name }}</p> --}}
-            <p>minmidi</p>
+            <p>{{ Auth::user()->name }}</p>
             <a href="#"><i class="fa fa-circle text-success fa-xs"></i> Online</a>
         </div>
     </div>
 
     <ul class="list-unstyled components">
         <li class="@yield('active_1')">
-            <a href="#"><i class="fas fa-tachometer-alt"></i> Trang chủ</a>
+            <a href="{{ route('index') }}"><i class="fas fa-tachometer-alt"></i> Trang chủ</a>
         </li>
 
         <li class="@yield('active_3')">
             <a href="#categoriesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-chart-pie"></i> Danh mục</a>
             <ul class="collapse list-unstyled" id="categoriesSubmenu">
                 <li>
-                    <a href="#"><i class="fas fa-list"></i> Danh mục sản phẩm</a>
+                    <a href="{{ route('category.index') }}"><i class="fas fa-list"></i> Danh mục sản phẩm</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fas fa-plus-circle"></i> Thêm danh mục</a>
+                    <a href="{{ route('category.create') }}"><i class="fas fa-plus-circle"></i> Thêm danh mục</a>
                 </li>
             </ul>
         </li>
@@ -33,10 +32,10 @@
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-mobile-alt"></i> Sản phẩm</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="#"><i class="fas fa-list"></i> Danh sách sản phẩm</a>
+                    <a href="{{ route('product.index') }}"><i class="fas fa-list"></i> Danh sách sản phẩm</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fas fa-plus-circle"></i> Thêm sản phẩm</a>
+                    <a href="{{ route('product.create') }}"><i class="fas fa-plus-circle"></i> Thêm sản phẩm</a>
                 </li>
             </ul>
         </li>
@@ -45,10 +44,10 @@
             <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-user-cog"></i> Tài khoản</a>
             <ul class="collapse list-unstyled" id="userSubmenu">
                 <li>
-                    <a href="#"><i class="fas fa-list"></i> Danh sách tài khoản</a>
+                    <a href="{{ route('user.index') }}"><i class="fas fa-list"></i> Danh sách tài khoản</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fas fa-plus-circle"></i> Thêm tài khoản</a>
+                    <a href="{{ route('user.create') }}"><i class="fas fa-plus-circle"></i> Thêm tài khoản</a>
                 </li>
             </ul>
         </li>

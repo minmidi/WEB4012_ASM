@@ -17,17 +17,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
         'name',
         'email',
+        'is_active',
+        'password',
+        'first_name',
+        'last_name',
         'images',
         'gender',
         'birthday',
         'address',
-        'birthday',
-        'is_active',
-        'password',
     ];
 
     /**
@@ -48,4 +47,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // SEARCH FUNCTIONS
+    public function scopeSearch($query, ...$colums)
+    {
+        $keyWord = request()->search;
+        foreach ($colums as $colum) {
+            $query->orWhere($colum, 'like', "%$keyWord%");
+        }
+    }
 }
