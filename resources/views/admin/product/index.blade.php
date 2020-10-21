@@ -1,8 +1,8 @@
 @extends('admin.master')
-@section('title','Danh sách tài khoản')
-@section('active','Danh sách tài khoản')
-@section('active_4','active')
-@section('url','Danh sách tài khoản')
+@section('title','Danh sách sản phẩm')
+@section('active','Danh sách sản phẩm')
+@section('active_3','active')
+@section('url','Danh sách sản phẩm')
 @section('main')
     <div>
         <form action="" method="GET" class="form-inline mb-2" role="form">
@@ -12,7 +12,7 @@
             <button type="submit" class="btn btn-primary mr-2">
                 <i class="fas fa-search"></i>
             </button>
-            <a href="{{ route('user.create') }}" class="btn btn-success"> thêm mới</a>
+            <a href="{{ route('product.create') }}" class="btn btn-success"> thêm mới</a>
         </form>
     </div>
 
@@ -20,9 +20,11 @@
         <thead>
             <tr class="table-info">
                 <th scope="col" class="text-center">ID</th>
+                <th scope="col" class="text-center">Tên sản phẩm</th>
                 <th scope="col" class="text-center">Hình ảnh</th>
-                <th scope="col" class="text-center">Tên đăng nhập</th>
-                <th scope="col" class="text-center">Email</th>
+                <th scope="col" class="text-center">Giá sản phẩm</th>
+                <th scope="col" class="text-center">Giảm giá</th>
+                <th scope="col" class="text-center">Tình trạng</th>
                 <th scope="col" class="text-center">Trạng thái</th>
                 <th scope="col" class="text-center">Chi tiết</th>
                 <th scope="col" class="text-center">Sửa</th>
@@ -30,23 +32,25 @@
             </tr>
         </thead>
         <tbody>
-        @foreach($users as $user)
+        @foreach($products as $product)
         <tr>
-            <td class="text-center">{{ $user->id }}</td>
-            <td class="text-center"><img src="{{ asset('images/posts/' . $user->images) }}" height="150" width="150" style="border-radius: 50%" /> </td>
-            <td class="text-center">{{ $user->name }}</td>
-            <td class="text-center">{{ $user->email }}</td>
-            <td class="text-center">{{ $user->is_active == 1 ? 'Kích hoạt' : 'Không kích hoạt' }}</td>
+            <td class="text-center">{{ $product->id }}</td>
+            <td class="text-center">{{ $product->name }}</td>
+            <td class="text-center"><img src="{{ asset('images/posts/' . $product->images) }}" height="150" width="150" style="border-radius: 50%" /> </td>
+            <td class="text-center">{{ Str::currency($product->price) . " " . "VNĐ" }}</td>
+            <td class="text-center">{{ $product->sale_percent . "%" }}</td>
+            <td class="text-center">{{ $product->stocks == 1 ? 'Còn hàng' : 'Không còn hàng' }}</td>
+            <td class="text-center">{{ $product->is_active == 1 ? 'Kích hoạt' : 'Không kích hoạt' }}</td>
             <td class="text-center">
-                <a href="{{ route('user.show',$user->id) }}" class="show_admin"><i class="fas fa-clipboard-list"></i></a>
+                <a href="{{ route('product.show',$product->id) }}" class="show_admin"><i class="fas fa-clipboard-list"></i></a>
             </td>
             <td class="text-center">
-                <a href="{{ route('user.edit', $user->id) }}" class="edit_admin"><i class="fas fa-edit"></i></a>
+                <a href="{{ route('product.edit', $product->id) }}" class="edit_admin"><i class="fas fa-edit"></i></a>
             </td>
 
             <td class="text-center">
                 <form
-                  action="{{ route('user.destroy', $user->id) }}"
+                  action="{{ route('product.destroy', $product->id) }}"
                   method="POST"
                 >
                   @csrf
@@ -61,7 +65,7 @@
     </table>
 
     <div class="clearfix float-right">
-        {{ $users -> links() }}
+        {{ $products -> links() }}
     </div>
 
 @stop

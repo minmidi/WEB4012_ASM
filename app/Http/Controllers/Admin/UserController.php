@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserAddRequest;
+use App\Http\Requests\UserEditRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -117,7 +118,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        // Return view edit
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
@@ -127,9 +129,55 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $user, UserEditRequest $UserEditRequest)
     {
-        //
+        //dd($request->all());
+        /* Assigns values ​​to arrays (Encrypted passwords using bcrypt) */
+        $user['first_name'] = $request->first_name;
+        $user['last_name'] = $request->last_name;
+        $user['gender'] = $request->gender;
+        $user['birthday'] = $request->birthday;
+        $user['address'] = $request->address;
+        $user['name'] = $request->name;
+        $user['images'] = $request->images;
+        $user['email'] = $request->email;
+        $user['password'] = bcrypt($request->password);
+        $user['is_active'] = ($request->is_active);
+
+        /* Image processing */
+        // Create a variable to get the file through the request
+        $get_image = $request->file('images');
+        // Create a variable that checks if the file exists
+        $has_file = $request->hasFile('images');
+        //If a file is found and an existing file returns true, then add the file
+        if ($get_image && $has_file == true) {
+            // Get the file name
+            $get_image_name = $get_image->getClientOriginalName();
+            // Convert files use uniqid to generate a random string and concatenate names with spaces and underscores
+            $new_images =  uniqid() . '_' . str_replace(' ', '_', $get_image_name);
+            // Push the file to the path of the converted name
+            $get_image->move('images/posts', $new_images);
+            // Assigns the converted name to the array
+            $user['images'] = $new_images;
+            
+            // Get all value
+            $user->fillable($request->all());
+
+            // Save value to database
+            $user->save();
+
+            // Return page redirection and successful message submission with Sweetaleart
+            return redirect()->route('user.index')->with('toast_success', 'Đã cập nhật thông tin thành công!');
+        }
+        // If the image is empty, continue to upload
+        $user['images'] = "";
+        // Get all value
+        $user->fillable($request->all()); 
+        // Save value to database
+        $user->save();
+        // Return page redirection and successful message submission with Sweetaleart
+        return redirect()->route('user.index')->with('toast_success', 'Đã cập nhật thông tin thành công!');
+        
     }
 
     /**

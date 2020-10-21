@@ -21,4 +21,18 @@ class Product extends Model
         'stocks',
         'is_active',
     ];
+
+    // Function categories
+    public function categories() {
+        return $this->belongsToMany(Category::class, 'category_products', 'product_id', 'category_id');
+    }
+
+    // SEARCH FUNCTIONS
+    public function scopeSearch($query, ...$colums)
+    {
+        $keyWord = request()->search;
+        foreach ($colums as $colum) {
+            $query->orWhere($colum, 'like', "%$keyWord%");
+        }
+    }
 }

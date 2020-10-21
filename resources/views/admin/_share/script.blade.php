@@ -4,8 +4,7 @@
 <script src="{{ asset('Dashboard/js/popper.js') }}"></script>
 <!-- Bootstrap JS -->
 <script src="{{ asset('Dashboard/js/bootstrap.js') }}"></script>
-<!-- Sweetalert JS default delete-->
-<script src="{{ asset('Dashboard/js/sweetalert.js') }}"></script>
+
 
 <!-- Font Awesome JS -->
 <script src="{{ asset('Dashboard/js/fontawesome-soild.js') }}"></script>
