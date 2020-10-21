@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Use to paginate bootstrap
         Paginator::useBootstrap();
+
+        /*
+            Add Str::currency macro 
+            Used to fomat price
+        */
+        Str::macro('currency', function ($price)
+        {
+            return number_format($price, 2, ',', '.');
+        });
     }
 }

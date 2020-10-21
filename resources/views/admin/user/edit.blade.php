@@ -1,17 +1,21 @@
 @extends('admin.master')
-@section('title','Thêm tài khoản')
-@section('active','Thêm tài khoản')
+@section('title','Sửa tài khoản')
+@section('active','Sửa tài khoản')
 @section('active_4','active')
-@section('url','Thêm tài khoản')
+@section('url','Sửa tài khoản: '.$user->name)
 @section('main')
+
     
-    <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data" role="form" >
+    <form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data" role="form" >
         @csrf
+
+        <!-- change mathot to PUT request -->
+        <input type='hidden' name='_method' value='PUT' />
 
         <!-- First name input -->
         <div class="form-group m-3">
             <label for="first_name" class="mt-3">Tên họ đệm</label>
-            <input type="text" class="form-control" name="first_name" id='first_name' placeholder="Nhập tên họ đệm">
+            <input type="text" class="form-control" name="first_name" id='first_name' placeholder="Nhập tên họ đệm" value="{{ $user->first_name }}">
         </div>
         <!-- End First name input -->
 
@@ -30,7 +34,7 @@
         <!-- Last name input -->
         <div class="form-group m-3">
             <label for="last_name" class="mt-3">Tên</label>
-            <input type="text" class="form-control" name="last_name" id='last_name' placeholder="Nhập tên sau">
+            <input type="text" class="form-control" name="last_name" id='last_name' placeholder="Nhập tên sau" value="{{ $user->last_name }}">
         </div>
         <!-- End last name input -->
 
@@ -47,7 +51,10 @@
 
         <!-- Images input -->
         <div class="form-group m-3">
-            <label for="images" class="mt-3">Thêm hình ảnh</label>
+            <label for="images" class="mt-3">Hình ảnh</label>
+            <div class="mb-3">
+                <img src="{{ asset('images/posts/'.$user->images) }}" alt="Ảnh" style="width: 200px; height:150px;">
+            </div>
             <input type="file" class="form-control" name="images" id='images'>
         </div>
         <!-- End images input -->
@@ -66,8 +73,9 @@
         <!-- Birthday input -->
         <div class="form-group m-3">
             <label for="birthday" class="mt-3">Ngày sinh</label>
-            <input type="date" class="form-control" name="birthday" id='birthday'>
+            <input type="" class="form-control" name="birthday" id='birthday' value="{{ $user->birthday }}">
         </div>
+       
         <!-- End birthday input -->
 
         <!-- Validate birthday input -->
@@ -84,7 +92,7 @@
         <!-- Address input -->
         <div class="form-group m-3">
             <label for="address" class="mt-3">Địa chỉ</label>
-            <input type="text" class="form-control" name="address" id='address' placeholder="Nhập địa chỉ">
+            <input type="text" class="form-control" name="address" id='address' placeholder="Nhập địa chỉ" value="{{ $user->address }}">
         </div>
         <!-- End address input -->
 
@@ -102,7 +110,7 @@
         <!-- User name login input -->
         <div class="form-group m-3">
             <label for="name" class="mt-3">Tên đăng nhập</label>
-            <input type="text" class="form-control" name="name" id='name' placeholder="Nhập tên đăng nhập">
+            <input type="text" class="form-control" name="name" id='name' placeholder="Nhập tên đăng nhập" value="{{ $user->name }}">
         </div>
         <!-- End user name login input -->
 
@@ -120,7 +128,7 @@
          <!-- Email input -->
         <div class="form-group m-3">
             <label for="email" class="mt-3">Email</label>
-            <input type="text" class="form-control" name="email" id='email' placeholder="Nhập email">
+            <input type="text" class="form-control" name="email" id='email' placeholder="Nhập email" value="{{ $user->email }}">
         </div>
         <!-- End email input -->
 
@@ -158,21 +166,21 @@
             <label class="mt-3">Giới tính</label>
             <div class="row">
                 <div class="form-check ml-3">
-                    <input class="form-check-input" type="radio" name="gender" id="gender" value="0" checked>
+                    <input class="form-check-input" type="radio" name="gender" id="gender" value="0" {{$user->gender === 0 ? "checked" : ""}}>
                     <label class="form-check-label" for="exampleRadios1">
                       Nam
                     </label>
                 </div>
         
                 <div class="form-check ml-3">
-                    <input class="form-check-input" type="radio" name="gender" id="gender" value="1" checked>
+                    <input class="form-check-input" type="radio" name="gender" id="gender" value="1" {{$user->gender === 1 ? "checked" : ""}}>
                     <label class="form-check-label" for="exampleRadios1">
                       Nữ
                     </label>
                 </div>
         
                 <div class="form-check ml-3">
-                    <input class="form-check-input" type="radio" name="gender" id="gender" value="2" checked>
+                    <input class="form-check-input" type="radio" name="gender" id="gender" value="2" {{$user->gender === 2 ? "checked" : ""}}>
                     <label class="form-check-label" for="exampleRadios1">
                       Không xác định
                     </label>
@@ -186,14 +194,14 @@
             <label class="mt-3">Trạng thái</label>
             <div class="row">
                 <div class="form-check ml-3">
-                    <input class="form-check-input" type="radio" name="is_active" id="is_active" value="0" checked>
+                    <input class="form-check-input" type="radio" name="is_active" id="is_active" value="0" {{$user->is_active === 0 ? "checked" : ""}}>
                     <label class="form-check-label" for="exampleRadios1">
                       Không kích hoạt
                     </label>
                 </div>
         
                 <div class="form-check ml-3">
-                    <input class="form-check-input" type="radio" name="is_active" id="is_active" value="1" checked>
+                    <input class="form-check-input" type="radio" name="is_active" id="is_active" value="1" {{$user->is_active === 1 ? "checked" : ""}}>
                     <label class="form-check-label" for="exampleRadios1">
                       Kích hoạt
                     </label>
@@ -202,7 +210,7 @@
         </div>
         <!-- End status input -->
 
-        <button type="submit" class="btn btn-primary m-3">Thêm mới</button>
+        <button type="submit" class="btn btn-primary m-3">Cập nhật</button>
     </form>
 
 @stop

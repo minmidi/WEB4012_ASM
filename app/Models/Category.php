@@ -15,4 +15,13 @@ class Category extends Model
         'name',
         'parent_id',
     ];
+
+    // SEARCH FUNCTIONS
+    public function scopeSearch($query, ...$colums)
+    {
+        $keyWord = request()->search;
+        foreach ($colums as $colum) {
+            $query->orWhere($colum, 'like', "%$keyWord%");
+        }
+    }
 }

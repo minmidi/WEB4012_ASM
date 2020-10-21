@@ -1,7 +1,7 @@
 @extends('admin.master')
 @section('title','Hồ sơ')
 @section('active','Hồ sơ')
-@section('active_5','active')
+@section('active_4','active')
 @section('url','Chi tiết tài khoản: '. $user->name)
 @section('main')
 

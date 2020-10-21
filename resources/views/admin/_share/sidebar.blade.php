@@ -16,7 +16,7 @@
             <a href="{{ route('index') }}"><i class="fas fa-tachometer-alt"></i> Trang chủ</a>
         </li>
 
-        <li class="@yield('active_3')">
+        <li class="@yield('active_2')">
             <a href="#categoriesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-chart-pie"></i> Danh mục</a>
             <ul class="collapse list-unstyled" id="categoriesSubmenu">
                 <li>
@@ -28,7 +28,7 @@
             </ul>
         </li>
 
-        <li class="@yield('active_2')">
+        <li class="@yield('active_3')">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-mobile-alt"></i> Sản phẩm</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
@@ -40,7 +40,7 @@
             </ul>
         </li>
 
-        <li class="@yield('active_5')">
+        <li class="@yield('active_4')">
             <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-user-cog"></i> Tài khoản</a>
             <ul class="collapse list-unstyled" id="userSubmenu">
                 <li>
