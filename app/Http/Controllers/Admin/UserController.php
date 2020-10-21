@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
-{
+{    
     /**
      * Display a listing of the resource.
      *
@@ -151,7 +151,7 @@ class UserController extends Controller
         }
         // Otherwise go back to the first page and the message is not successful
         else {
-            return redirect()->back()->with('toast_success', 'Xoá không thành công!');
+            return redirect()->back()->with('toast_error', 'Xoá không thành công!');
         }
     }
 }
