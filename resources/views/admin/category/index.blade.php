@@ -60,7 +60,7 @@
 
 @section('script')
 <!-- Sweetalert JS default delete-->
-<script src="{{ asset('Dashboard/js/sweetalert.js') }}"></script>    
+<script src="{{ asset('Dashboard/js/sweetalert.js') }}"></script>
 @endsection
 
 

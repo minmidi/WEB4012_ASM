@@ -17,9 +17,8 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('images');
-            $table->unsignedBigInteger('category_id');
             $table->text('description');
-            $table->float('price');
+            $table->double('price');
             $table->float('sale_percent');
             $table->boolean('stocks');
             $table->boolean('is_active')->default(1);

@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {    
+    public function __construct()
+    {
+        $this->middleware('activeLoginUser');
+        // $this->middleware('adminLogin');
+        // $this->middleware('userLogin')->only('index');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -32,7 +32,7 @@ class UserAddRequest extends FormRequest
             'images' => 'image',
             'email' => 'required|email|unique:users|regex:/^.+@.+$/i',
             'password' => 'required|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/',
-            
+
         ];
     }
 
@@ -57,8 +57,8 @@ class UserAddRequest extends FormRequest
             'email.email' => 'Thông tin nhập vào không đúng định dạng (VD: abc@gmail.com)',
             'email.unique' => 'Email đã được sử dụng, vui lòng chọn email khác và thử lại',
             'email.regex' => 'Email không đúng định dạng, vui lòng nhập lại và tiếp tục (VD: adc@gmail.com)',
-            'password.required' => 'Không được để trống mật khẩu, vui lòng nhập rồi tiếp tục', 
-            'password.regex' => 'Mật khẩu phải có tối thiểu tám ký tự, ít nhất một chữ cái, một số và một ký tự đặc biệt', 
+            'password.required' => 'Không được để trống mật khẩu, vui lòng nhập rồi tiếp tục',
+            'password.regex' => 'Mật khẩu phải có tối thiểu tám ký tự, ít nhất một chữ cái, một số và một ký tự đặc biệt',
         ];
     }
 }

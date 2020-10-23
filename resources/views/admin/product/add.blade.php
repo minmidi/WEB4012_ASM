@@ -4,8 +4,8 @@
 @section('active_3','active')
 @section('url','Thêm sản phẩm')
 @section('main')
-    
-    <form action="{{ route('product.create') }}" method="POST" enctype="multipart/form-data" role="form" >
+
+    <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data" role="form" >
         @csrf
 
         <!-- Product name input -->
@@ -16,7 +16,7 @@
         <!-- End product name input -->
 
         <!-- Validate product name input -->
-        @error('first_name')
+        @error('name')
             <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
                 {{ $message }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -43,19 +43,21 @@
             </div>
         @enderror
         <!-- End validate images input -->
-        
+
 
         <!-- Category name input -->
         <div class="form-group m-3">
             <label class="mt-3">Danh mục sản phẩm</label>
             <div class="row">
-                <div class="form-check ml-3">
-                    <input class="form-check-input" type="radio" name="category_id" id="category_id" value="" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                      Không kích hoạt
-                    </label>
-                </div>
-            </div>  
+                @foreach ($category as $categories )
+                    <div class="form-check ml-3">
+                        <input class="form-check-input" type="checkbox" name="category_id[]" id="category_id" value="{{ $categories->id }}">
+                        <label class="form-check-label" for="exampleRadios1">
+                        {{ $categories->name }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
         </div>
         <!-- End category name input -->
 
@@ -112,7 +114,7 @@
          <!-- percent input -->
         <div class="form-group m-3">
             <label for="sale_percent" class="mt-3">Giảm giá</label>
-            <input type="text" class="form-control" name="sale_percent" id='sale_percent' placeholder="Nhập giảm giá">
+            <input type="text" class="form-control" name="sale_percent" id='sale_percent' placeholder="Nhập giảm giá" value="0">
         </div>
         <!-- End percent input -->
 
@@ -137,18 +139,18 @@
                       Không còn hàng
                     </label>
                 </div>
-        
+
                 <div class="form-check ml-3">
                     <input class="form-check-input" type="radio" name="stocks" id="stocks" value="1" checked>
                     <label class="form-check-label" for="exampleRadios1">
                       Còn hàng
                     </label>
                 </div>
-            </div>  
+            </div>
         </div>
         <!-- End Stock input -->
 
-       
+
 
         <!-- Status input -->
         <div class="form-group m-3">
@@ -160,14 +162,14 @@
                       Không kích hoạt
                     </label>
                 </div>
-        
+
                 <div class="form-check ml-3">
                     <input class="form-check-input" type="radio" name="is_active" id="is_active" value="1" checked>
                     <label class="form-check-label" for="exampleRadios1">
                       Kích hoạt
                     </label>
                 </div>
-            </div>  
+            </div>
         </div>
         <!-- End status input -->
 
