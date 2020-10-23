@@ -31,7 +31,7 @@
                         <div class="col-lg-9 col-xl-6">
                             {{-- {{ dd($product->categories) }} --}}
                             @foreach ($product->categories as $product_category )
-                                <p>{{ $product_category->name }}</p>
+                                <p>{{ $product_category->id ."-" . " " . $product_category->name }}</p>
                             @endforeach
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
 
-                   
+
 
                     <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label">Trạng thái</label>
@@ -73,8 +73,8 @@
                         </div>
                     </div>
 
-                    
-                    
+
+
                 </div>
                 <!--end::Body-->
             </form>

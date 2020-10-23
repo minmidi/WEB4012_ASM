@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\ProductAddRequest;
+use Storage;
 class ProductController extends Controller
 {
     /**
@@ -16,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-         /* 
+         /*
         * Get information from the product table and arrange it in descending order of time
         * Products search with key to name, price, sale_percent
         */
@@ -34,9 +35,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
+        $category = Category::all();
         // Return view create product
-        return view('admin.product.add');
+        return view('admin.product.add',[
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -45,9 +48,27 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductAddRequest $request)
     {
-        //
+        //dd($request->all());
+        $product = new Product($request->all());
+        $get_image = $request->file('images');
+        // Create a variable that checks if the file exists
+        $has_file = $request->hasFile('images');
+        //If a file is found and an existing file returns true, then add the file
+        if ($get_image && $has_file == true) {
+            // Get the file name
+            $get_image_name = $get_image->getClientOriginalName();
+            // Convert files use uniqid to generate a random string and concatenate names with spaces and underscores
+            $new_images =  uniqid() . '_' . str_replace(' ', '_', $get_image_name);
+            // Push the file to the path of the converted name
+            $get_image->move('images/posts', $new_images);
+            // Assigns the converted name to the array
+            $product->images= $new_images;
+            $product->save();
+            $product->categories()->attach($request->category_id);
+            return redirect()->route('product.index');
+        }
     }
 
     /**
@@ -71,7 +92,12 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $category = Category::all();
+        // Return view product edit
+        return view('admin.product.edit',[
+            'product' => $product,
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -83,7 +109,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+
     }
 
     /**

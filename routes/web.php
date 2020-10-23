@@ -1,6 +1,6 @@
 <?php
 
-
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -21,7 +21,8 @@ use Illuminate\Support\Facades\Session;
 Auth::routes();
 
 
-Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
+
+Route::middleware('activeLoginUser')->prefix('admin')->group(function () {
     Route::resources([
         '/' => 'App\Http\Controllers\Admin\AdminController',
         'user' => 'App\Http\Controllers\Admin\UserController',

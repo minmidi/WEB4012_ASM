@@ -24,7 +24,10 @@
 	<script src="{{ asset('Dashboard/js/bootstrap.js') }}"></script>
 	<!--===============================================================================================-->
 	<!--===============================================================================================-->
-	<script src="{{ asset('Dashboard/js/main.js') }}"></script>
+    <script src="{{ asset('Dashboard/js/main.js') }}"></script>
+
+    <!-- Plugin added sweetalert custom-->
+    @include('sweetalert::alert');
 
 </body>
 

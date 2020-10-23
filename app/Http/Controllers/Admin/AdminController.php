@@ -8,11 +8,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         Alert::success('Chúc mừng bạn đã đăng nhập thành công');

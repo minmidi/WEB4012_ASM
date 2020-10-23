@@ -18,9 +18,9 @@ class CategoryController extends Controller
     public function index()
     {
 
-        /* 
+        /*
         * Get information from the user table and arrange it in descending order of time
-        * User search with key to name or email 
+        * User search with key to name or email
         */
 
         $category = Category::orderby('created_at','desc')
@@ -99,7 +99,7 @@ class CategoryController extends Controller
             return redirect()->route('category.index')->with('toast_success', 'Đã cập nhật thông tin thành công!');
         }
         return redirect()->route('category.index')->with('toast_error', 'Cập nhật thông tin không thành công!');
-        
+
     }
 
     /**

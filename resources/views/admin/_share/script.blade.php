@@ -42,10 +42,10 @@
 <!-- End weetalert confirm delete -->
 
 <!-- Plugin added sweetalert custom-->
-@include('sweetalert::alert');
+@include('sweetalert::alert')
 
-{{-- 
-CUSTOM JS 
+{{--
+CUSTOM JS
 --}}
 @yield('script')
 
